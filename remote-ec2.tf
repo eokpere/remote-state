@@ -27,7 +27,7 @@ resource "aws_instance" "my-ec2" {
   ami = data.aws_ami.amzlinux2.id
   instance_type = "t2.micro" 
   key_name = "mykeypair"
-  aws_security_group_id = data.terraform_remote_state.aws_security_group.vpc-ssh.id
+  vpc_security_group_ids = data.terraform_remote_state.aws_security_group.vpc-ssh_id
   count = 1
   tags = {
     "Name" = "Staging-${count.index}"
