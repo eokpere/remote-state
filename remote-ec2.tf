@@ -28,7 +28,7 @@ resource "aws_instance" "my-ec2" {
   instance_type = "t2.micro" 
   key_name = "mykeypair"
   #vpc_security_group_ids = [lookup(data.terraform_remote_state.vpc-ssh.outputs)]
-  vpc_security_group_ids = data.terraform_remote_state.vpc-ssh.vpc_security_group_ids
+  vpc_security_group_ids = data.terraform_remote_state.vpc-ssh.outputs.vpc_security_group_ids
   count = 1
   tags = {
     "Name" = "Staging-${count.index}"
