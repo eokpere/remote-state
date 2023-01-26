@@ -1,4 +1,4 @@
-data "terraform_remote_state" "vpc" {
+data "terraform_remote_state" "vpc-ssh" {
   backend = "remote"
 
   config = {
@@ -27,7 +27,8 @@ resource "aws_instance" "my-ec2" {
   ami = data.aws_ami.amzlinux2.id
   instance_type = "t2.micro" 
   key_name = "mykeypair"
-  vpc_security_group_ids = data.terraform_remote_state.aws_security_group.vpc-ssh_id
+  #vpc_security_group_ids = [lookup(data.terraform_remote_state.vpc-ssh.outputs)]
+  vpc_security_group_ids = data.terraform_remote_state.vpc-ssh.vpc_security_group_ids
   count = 1
   tags = {
     "Name" = "Staging-${count.index}"
