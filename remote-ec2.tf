@@ -32,3 +32,4 @@ resource "aws_instance" "my-ec2" {
   tags = {
     "Name" = "Staging-${count.index}"
   }
+}
