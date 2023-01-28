@@ -9,5 +9,6 @@ terraform {
 
 # Configure the AWS Provider
 provider "aws" {
-  region = "ca-central-1"
+  region = var.aws_region
+  profile = "terraform-user-new-acct"
 }

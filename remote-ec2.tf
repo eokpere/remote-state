@@ -4,7 +4,7 @@ data "terraform_remote_state" "vpc-ssh" {
   config = {
     organization = "FusionIT"
     workspaces = {
-      name = "gh-action-demo-eva"
+      name = "gh-action-demo-eva2"
     }
   }
 }
@@ -25,10 +25,10 @@ resource "aws_instance" "foo" {
 
 resource "aws_instance" "my-ec2" {
   ami = data.aws_ami.amzlinux2.id
-  instance_type = "t2.micro" 
-  key_name = "mykeypair"
+  instance_type = var.instance_type_map["dev"] 
+  key_name = var.instance_keypair
   #vpc_security_group_ids = [lookup(data.terraform_remote_state.vpc-ssh.outputs)]
-  vpc_security_group_ids = data.terraform_remote_state.vpc-ssh.outputs.vpc_security_group_ids
+  vpc_security_group_ids = [data.terraform_remote_state.vpc-ssh.outputs.sg_id]
   count = 1
   tags = {
     "Name" = "Staging-${count.index}"
