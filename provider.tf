@@ -10,5 +10,5 @@ terraform {
 # Configure the AWS Provider
 provider "aws" {
   region = var.aws_region
-  profile = "terraform-user-new-acct"
+  # profile = "terraform-user-new-acct"
 }
