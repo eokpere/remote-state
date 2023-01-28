@@ -3,7 +3,7 @@ terraform {
     organization = "FusionIT"
 
     workspaces {
-      name = "gh-action-demo-eva"
+      name = "gh-action-demo-eva2"
     }
   }
 }
